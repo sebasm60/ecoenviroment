@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const URI = 'mongodb+srv://ecoenviroment:ecoenviroment@ecoenviroment.wlgyr.mongodb.net/ecoenviromen?retryWrites=true&w=majority';
+const URI = 'mongodb+srv://ecoenviroment:ecoenviroment@ecoenviroment.wlgyr.mongodb.net/ecoenviroment?retryWrites=true&w=majority';
 
 mongoose.connect(URI, {
         useCreateIndex: true,

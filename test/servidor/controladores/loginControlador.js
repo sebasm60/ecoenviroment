@@ -1,8 +1,10 @@
 const controlador = {};
 const bcrypt = require('bcrypt');
 const usuario = require('../schemas/SchemaCuenta');
+const jwt = require('jsonwebtoken');
+const config = require('../configuraciones/keys');
 
-controlador.login = (req, res) => {
+controlador.login = async (req, res) => {
     const { contraseña, correo } = req.body;
     usuario.findOne({ correo: correo })
         .then(user => {
@@ -15,22 +17,20 @@ controlador.login = (req, res) => {
                             apellidos: user.usuario.apellidos,
                             identificacion: user.usuario.identificacion,
                             correo: user.correo,
-                            contraseña: user.contraseña
                         };
-                        /*jwt.sign({ payload }, config.SECRET_TOKEN, function(err, token) {
+                        jwt.sign({ payload }, config.SECRET_TOKEN, function(err, token) {
                             if (err) {
                                 res.status(500).send(err);
                             } else {
                                 res.status(200).send({ message: 'Acesso ', token, payload });
                             }
-                        });*/
+                        });
                         res.status(200).send({ message: 'Acceso', payload });
                     } else {
                         res.status(200).send({ message: 'Contrsaeña incorrecta' });
                     }
                 })
                 .catch(err => {
-                    console.error(err);
                     res.status(500).send({ err });
                 });
         })
@@ -38,6 +38,11 @@ controlador.login = (req, res) => {
             console.error(err);
             res.status(500).send({ err });
         });
+};
+
+controlador.searchByMeail = async(req, res) => {
+    const user = await usuario.findOne({ correo: req.params.id });
+    res.json(user.correo);
 };
 
 module.exports = controlador;

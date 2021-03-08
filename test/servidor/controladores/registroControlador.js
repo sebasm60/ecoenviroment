@@ -22,4 +22,13 @@ controlador.registroUsuario = async(req, res) => {
     };
 };
 
+controlador.searchByMeail = async(req, res) => {
+    const user = await cuenta.findOne({ correo: req.params.id });
+    if (user != null) {
+        res.json(user.correo);
+    } else{
+        res.json({user});
+    }      
+};
+
 module.exports = controlador;
