@@ -10,7 +10,8 @@ export class Home extends React.Component {
 
   render() {
     return (
-        <div className="container" id="container">
+        <div className="container-inicio">
+                    <div className="container-login" id="container">
             <div className="form-container sign-up-container">
                 <Signup/>
             </div>
@@ -41,8 +42,8 @@ export class Home extends React.Component {
                     </div>
                 </div>
             </div>
+        </div> 
         </div>
-        
     );
   }
 }

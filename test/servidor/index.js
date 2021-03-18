@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 //Routes.
 app.use('/signup', require('./routes/registroRoute'));
 app.use('/login', require('./routes/loginRoute'));
-app.use('producto', require('./routes/productosRoute'));
+app.use('/producto', require('./routes/productosRoute'));
 
 //Inciar servidor.
 app.listen(app.get('port'), () => {

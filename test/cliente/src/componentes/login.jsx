@@ -23,7 +23,7 @@ export class Login extends React.Component {
         if(res.data.message === 'Contrsaeña incorrecta'){
           document.getElementById("errorPass").innerHTML = 'La contraseña no es valida, intente de nuevo.';        
         } else {
-          console.log("Contraseña correct");
+          window.location.href = './inicio'
         };       
     })
     .catch( err => {

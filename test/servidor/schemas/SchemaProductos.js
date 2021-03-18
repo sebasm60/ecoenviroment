@@ -27,12 +27,20 @@ const SchemaProducto = new Schema({
         type: String,
         required: true
     },
-    cateogoria: {
+    categoria: {
         type: String,
         required: true
     },
     puntos: {
         type: Number,
+        required: true
+    },
+    descuento: {
+        type: Number,
+        required: true
+    },
+    imagen: {
+        type: String,
         required: true
     }
 });
