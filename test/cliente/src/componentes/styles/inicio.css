@@ -22,6 +22,7 @@ img {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    margin-left: 75px;
 }
 
 .row {
@@ -123,7 +124,7 @@ img {
     padding: 20px 10px 5px 10px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    font-family: 'Roboto';
+    font-family: 'Nunito';
     color: #666;
 }
 

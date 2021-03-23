@@ -15,6 +15,7 @@ export class Login extends React.Component {
     };
 
     const user = await axios.get(`http://localhost:5000/login/${this.correo}`);
+    console.log(user);
     if (user.data === null) {
       document.getElementById("errorEmail").innerHTML = 'El usaurio no es valido, intente de nuevo.';
     } else {
@@ -23,7 +24,11 @@ export class Login extends React.Component {
         if(res.data.message === 'Contrsaeña incorrecta'){
           document.getElementById("errorPass").innerHTML = 'La contraseña no es valida, intente de nuevo.';        
         } else {
-          window.location.href = './inicio'
+          sessionStorage.setItem('correo', user.data.correo);
+          sessionStorage.setItem('nombres', user.data.nombre);
+          sessionStorage.setItem('apellidos', user.data.apellido);
+          sessionStorage.setItem('identificacion', user.data.identificacion);   
+          window.location.href = `./dashboard`
         };       
     })
     .catch( err => {

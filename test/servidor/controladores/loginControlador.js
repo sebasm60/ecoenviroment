@@ -42,7 +42,7 @@ controlador.login = async (req, res) => {
 
 controlador.searchByMeail = async(req, res) => {
     const user = await usuario.findOne({ correo: req.params.id });
-    res.json(user.correo);
+    res.json({correo: user.correo, nombre: user.usuario.nombres, apellido : user.usuario.apellidos, identificacion : user.usuario.identificacion});
 };
 
 module.exports = controlador;

@@ -1,10 +1,11 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { Login } from "./componentes/login";
-import { Signup } from "./componentes/signup";
 import { Home } from "./componentes/home";
-import { Inicio } from "./componentes/inicio";
+import { Dashboard } from "./componentes/dashboard";
+import {DetalleProducto} from "./componentes/detalleProducto";
+import {Carrito} from "./componentes/carrito";
+import {Perfil} from "./componentes/perfil";
 
 function App() {
   return (
@@ -12,9 +13,10 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/inicio" component={Inicio} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/detalle-producto/:id" component={DetalleProducto}/>
+          <Route exact path="/carrito" component={Carrito} />
+          <Route exact path="/perfil" component={Perfil} />
         </Switch>
       </div>
     </Router>
