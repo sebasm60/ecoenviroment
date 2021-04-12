@@ -7,32 +7,45 @@ USE ecoenvironment;
 DROP TABLE IF EXISTS cliente;
 
 CREATE TABLE cliente (
-    identificacion INT(10) PRIMARY KEY,
+    identificacion VARCHAR(10) PRIMARY KEY,
     nombres VARCHAR(50) NOT NULL,
-    apellidos VARCHAR(50) NOT NULL
+    apellidos VARCHAR(50) NOT NULL,
+    identificacion_cliente VARCHAR(10),
+    foto VARCHAR(100) NOT NULL DEFAULT '/img/default.jpg',
 ) ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS cuenta;
 
 CREATE TABLE cuenta (
     id_cuenta INT(5) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    id VARCHAR(10) NOT NULL,
     correo VARCHAR(50) UNIQUE NOT NULL,
     contraseña VARCHAR(50) NOT NULL,
-    identificacion_cliente INT(10)
+    tipo_de_cuenta ENUM('cliente', 'empresa', 'admin')
 ) ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS direccion;
 
 CREATE TABLE direccion (
     id_direccion INT(5) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    identificacion_cliente INT(10) NOT NULL,
+    identificacion_cliente VARCHAR(10) NOT NULL,
     direccion VARCHAR(50) NOT NULL,
     departamento VARCHAR(25) NOT NULL,
     ciudad varchar(25) NOT NULL,
-    barrIo VARCHAR(50) NOT NULL,
-    codigo_postal VARCHAR(5) NOT NULL,
-    telefono VARCHAR(7) NOT NULL,
-    movil VARCHAR(10) NOT NULL
+    barrio VARCHAR(50) NOT NULL,
+    movil VARCHAR(10) NOT NULL DEFAULT '0000000000'
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS empresa;
+
+CREATE TABLE empresa (
+    nit VARCHAR(10) PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    descripcion_producto VARCHAR(100) NOT NULL,
+    precio DOUBLE NOT NULL,
+    categoria VARCHAR(50) NOT NULL,
+    empresa VARCHAR(50) NOT NULL,
+    cantidad INT(10) NOT NULL
 ) ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS producto;
@@ -51,7 +64,7 @@ DROP TABLE IF EXISTS pedido;
 
 CREATE TABLE pedido (
     id_pedido INT(5) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    identificacion_cliente INT(10),
+    identificacion_cliente VARCHAR(10) NOT NULL,
     estado VARCHAR(25) NOT NULL
 ) ENGINE=InnoDB;
 
@@ -76,7 +89,7 @@ DROP TABLE IF EXISTS factura;
 CREATE TABLE factura (
     numero_factura INT(10) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     id_pedido INT(5) UNSIGNED,
-    identificacion_cliente INT(10),
+    identificacion_cliente VARCHAR(10) NOT NULL,
     total DOUBLE NOT NULL
 ) ENGINE=InnoDB;
 

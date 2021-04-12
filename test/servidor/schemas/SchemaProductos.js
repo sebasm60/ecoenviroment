@@ -35,7 +35,7 @@ const SchemaProducto = new Schema({
         type: Number,
         required: true
     },
-    descuento: {
+    donacion: {
         type: Number,
         required: true
     },

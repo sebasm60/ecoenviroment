@@ -23,7 +23,7 @@ export class Signup extends React.Component {
     if (user.data === this.correo) {
       console.log('El usuario ya existe');
     } else {
-     axios.post('http://localhost:5000/signup', datos);
+     await axios.post('http://localhost:5000/signup', datos);
     }
    
   };
@@ -32,12 +32,6 @@ export class Signup extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <h1>Create account</h1>
-        <div className="social-container">
-          <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-          <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-          <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
-        </div>
-        <span>Or use your mail for registration</span>
         <input type="text" placeholder="Names"  onChange={(e) => (this.nombres = e.target.value)}/>
         <input type="text" placeholder="Surnames" onChange={(e) => (this.apellidos = e.target.value)}/>
         <input type="text" placeholder="Identificacion" onChange={(e) => (this.identificacion = e.target.value)}/>

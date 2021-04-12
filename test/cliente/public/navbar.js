@@ -33,15 +33,16 @@ window.onload = function() {
 
     //Agregar articulos al carrito
     const btnAdd = document.getElementById('add');
-    if (btnAdd){
+    if (btnAdd) {
         btnAdd.addEventListener('click', () => {
             const referencia = document.getElementById('referencia').innerHTML;
             const nombre = document.getElementById('nombre').innerHTML;
             const precio = document.getElementById('precio').innerHTML;
+            const imagen = document.getElementById('image').src;
             const cantidad = document.getElementById('value').value;
-    
-            const producto = [{ referencia: referencia, nombre: nombre, precio: precio, cantidad: cantidad }];
-    
+
+            const producto = [{ referencia: referencia, nombre: nombre, precio: precio, cantidad: cantidad, imagen : imagen}];
+
             if (localStorage.getItem('producto') === null) {
                 let productos = [];
                 productos.push(producto);
@@ -51,30 +52,76 @@ window.onload = function() {
                 productos.push(producto);
                 localStorage.setItem('producto', JSON.stringify(productos));
             }
-           
+
+        });
+    };
+
+    const body = document;
+    if (body) {
+        body.addEventListener('click', (e) => {
+        if(e.target.id.split('_')[0] === "cart"){
+            const referencia = document.getElementById(`referencia_${e.target.id.split('_')[1]}`).innerHTML;
+            const nombre = document.getElementById(`nombre_${e.target.id.split('_')[1]}`).innerHTML;
+            const precio = document.getElementById(`precio_${e.target.id.split('_')[1]}`).innerHTML;
+            const imagen = document.getElementById(`image_${e.target.id.split('_')[1]}`).src;
+            const cantidad = 1;
+
+            const producto = [{ referencia: referencia, nombre: nombre, precio: precio, cantidad: cantidad, imagen : imagen}];
+
+            if (localStorage.getItem('producto') === null) {
+                let productos = [];
+                productos.push(producto);
+                localStorage.setItem('producto', JSON.stringify(productos));
+            } else {
+                let productos = JSON.parse(localStorage.getItem('producto'));
+                productos.push(producto);
+                localStorage.setItem('producto', JSON.stringify(productos));
+            }
+        }
+        });
+    };
+
+    const heart = document.getElementById("heart");
+    if (heart) {
+        heart.addEventListener('click', (e) => {
+            console.log(e.target)
+            /*const referencia = document.getElementById('referencia').innerHTML;
+            const nombre = document.getElementById('nombre').innerHTML;
+            const precio = document.getElementById('precio').innerHTML;
+            const imagen = document.getElementById('image').src;
+            const cantidad = 1;
+
+            const producto = [{ referencia: referencia, nombre: nombre, precio: precio, cantidad: cantidad, imagen : imagen}];
+
+            if (localStorage.getItem('producto') === null) {
+                let productos = [];
+                productos.push(producto);
+                localStorage.setItem('producto', JSON.stringify(productos));
+            } else {
+                let productos = JSON.parse(localStorage.getItem('producto'));
+                productos.push(producto);
+                localStorage.setItem('producto', JSON.stringify(productos));
+            }*/
+
         });
     };
 
     //Eliminar articulos del carrito.
+
     const btnDelete = document.getElementById('delete');
-    if (btnDelete){
+    if (btnDelete) {
         btnDelete.addEventListener('click', (e) => {
-            let producto = JSON.parse(localStorage.getItem('producto'));       
+            let producto = JSON.parse(localStorage.getItem('producto'));
             const referencia = e.target.id.split('_')[1];
-            
-	        for (let i = 0; i < producto.length; i++){
-                console.log(producto[i])            
-                if (producto[i][0].referencia === referencia){
-                    producto.splice(i,1);
-                    window.location.reload();                
+            for (let i = 0; i < producto.length; i++) {
+                console.log(producto[i])
+                if (producto[i][0].referencia === referencia) {
+                    producto.splice(i, 1);
+                    window.location.reload();
                     break;
                 }
-	        };        
-        localStorage.setItem('producto', JSON.stringify(producto));
-        //getProduct();
-        //printTotal(getTotal());
+            };
+            localStorage.setItem('producto', JSON.stringify(producto));
         })
-    };      
+    };
 };
-
-  

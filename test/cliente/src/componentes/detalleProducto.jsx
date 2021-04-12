@@ -24,7 +24,7 @@ export class DetalleProducto extends React.Component {
           <div className="row-producto">                   
             <div className= "col-md-4 pb-1 pb-md-1 mt-3">
               <div className= "card-body-producto">
-                <img className="card-img-top" src ={`/${this.state.producto.imagen}`} />				
+                <img className="card-img-top" src ={`/${this.state.producto.imagen}`} id="image"/>				
               </div>
             </div>
             <hr/>

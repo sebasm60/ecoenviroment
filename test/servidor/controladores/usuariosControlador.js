@@ -1,27 +1,42 @@
 const usuario = require('../schemas/SchemaCuenta');
 const controlador = {};
 
-controlador.search = async (req, res) => {
+controlador.search = async(req, res) => {
     const Usuario = await usuario.findById(req.params.id);
     res.json(Usuario);
 };
 
-controlador.update = async (req, res) => {
-    const { correo, contraseña, identificacion, nombres, apellidos } = req.body;
+controlador.update = async(req, res) => {
+try {
+    const { correo, contraseña, identificacion, imagen, telefono, nombres, apellidos, departamento, ciudad, barrio, nomenclatura } = req.body;
     const newUsuario = {
-        correo, 
-        contraseña, 
-        identificacion, 
-        nombres, 
-        apellidos
+        correo,
+        contraseña,
+        usuario: {
+            identificacion,
+            nombres,
+            apellidos,
+            imagen, 
+            telefono
+        },
+        direccion: {
+            departamento,
+            ciudad,
+            barrio,
+            nomenclatura
+        }
     };
-    await usuario.findByIdAndUpdate(req.params.id, newUsuario);
-    res.json({message : 'Usuario actualizado'});
+    await usuario.findOneAndUpdate(req.params.id, newUsuario);
+    res.json({newUsuario});
+
+} catch (error) {
+    console.log(error)
+}
 };
 
-controlador.delete = async (req, res) => {
+controlador.delete = async(req, res) => {
     await usuario.findByIdAndDelete(req.params.id);
-    res.json({message : 'usuario eliminado'});
+    res.json({ message: 'usuario eliminado' });
 };
 
 controlador.listarUsuarios = async(req, res) => {

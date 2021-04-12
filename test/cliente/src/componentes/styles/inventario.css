@@ -1,0 +1,32 @@
+table {
+    width: 100%;
+    background-color: var(--text-grey);
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+thead {
+    background-color: var(--first-color);
+    border-bottom: solid 5px;
+    color: white;
+}
+
+tbody:nth-child(even) {
+    background-color: #ddd;
+    text-align: left;
+}
+
+tbody:hover {
+    background-color: var(--first-color);
+    color: white;
+}
+
+tbody img {
+    height: 25px;
+    width: 25px;
+}

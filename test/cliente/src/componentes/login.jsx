@@ -27,7 +27,13 @@ export class Login extends React.Component {
           sessionStorage.setItem('correo', user.data.correo);
           sessionStorage.setItem('nombres', user.data.nombre);
           sessionStorage.setItem('apellidos', user.data.apellido);
-          sessionStorage.setItem('identificacion', user.data.identificacion);   
+          sessionStorage.setItem('identificacion', user.data.identificacion);
+          sessionStorage.setItem('imagen', user.data.imagen);
+          sessionStorage.setItem('telefono', user.data.telefono);
+          sessionStorage.setItem('direccion', user.data.direccion);
+          sessionStorage.setItem('departamento', user.data.departamento);
+          sessionStorage.setItem('ciudad', user.data.ciudad);
+          sessionStorage.setItem('barrio', user.data.barrio);
           window.location.href = `./dashboard`
         };       
     })

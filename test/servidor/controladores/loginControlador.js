@@ -4,7 +4,7 @@ const usuario = require('../schemas/SchemaCuenta');
 const jwt = require('jsonwebtoken');
 const config = require('../configuraciones/keys');
 
-controlador.login = async (req, res) => {
+controlador.login = async(req, res) => {
     const { contraseña, correo } = req.body;
     usuario.findOne({ correo: correo })
         .then(user => {
@@ -17,6 +17,7 @@ controlador.login = async (req, res) => {
                             apellidos: user.usuario.apellidos,
                             identificacion: user.usuario.identificacion,
                             correo: user.correo,
+                            imagen: user.usuario.imagen
                         };
                         jwt.sign({ payload }, config.SECRET_TOKEN, function(err, token) {
                             if (err) {
@@ -42,7 +43,18 @@ controlador.login = async (req, res) => {
 
 controlador.searchByMeail = async(req, res) => {
     const user = await usuario.findOne({ correo: req.params.id });
-    res.json({correo: user.correo, nombre: user.usuario.nombres, apellido : user.usuario.apellidos, identificacion : user.usuario.identificacion});
+    res.json({
+        correo: user.correo,
+        nombre: user.usuario.nombres,
+        apellido: user.usuario.apellidos,
+        identificacion: user.usuario.identificacion,
+        imagen: user.usuario.imagen,
+        telefono: user.usuario.telefono,
+        direccion: user.direccion.nomenclatura,
+        departamento: user.direccion.departamento,
+        ciudad: user.direccion.ciudad,
+        barrio: user.direccion.barrio,
+    });
 };
 
 module.exports = controlador;

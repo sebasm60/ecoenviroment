@@ -18,7 +18,7 @@ controlador.registroUsuario = async(req, res) => {
         mail(correo, contraseña, identificacion, nombres, apellidos);
         res.json({ nuevaCuenta });
     } catch (error) {
-        res.status(500).json({ errorCode: error.err, message: "Error en el servidor." });
+        res.status(500).json({ errorCode: error.err, message: "Error en el servidor." }), console.log(error);
     };
 };
 
@@ -26,9 +26,9 @@ controlador.searchByMeail = async(req, res) => {
     const user = await cuenta.findOne({ correo: req.params.id });
     if (user != null) {
         res.json(user.correo);
-    } else{
-        res.json({user});
-    }      
+    } else {
+        res.json({ user });
+    }
 };
 
 module.exports = controlador;

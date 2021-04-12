@@ -2,6 +2,13 @@ import React from 'react';
 import './styles/navbar.css';
 
 export default class Nav extends React.Component {
+
+    close = () => {
+        sessionStorage.clear();
+        localStorage.clear();
+        window.location.href = 'http://localhost:3000/';
+    };
+
     render() {
         return (
            <div className="container-nav" id="container-nav">
@@ -11,7 +18,7 @@ export default class Nav extends React.Component {
                     </div>
 
                     <div className="header__img">
-                        <img src="/img/perfil.jpg" />
+                        <img src={sessionStorage.getItem('imagen')} />
                     </div>
                 </header>
 
@@ -26,35 +33,25 @@ export default class Nav extends React.Component {
                             <div className="nav__list">
                                 <a href="http://localhost:3000/dashboard" className="nav__link active">
                                     <i className="bx bx-grid-alt nav__icon"></i>
-                                    <span className="nav__name">Dashboard</span>
+                                    <span className="nav__name">Inicio</span>
                                 </a>
                                 <a href="http://localhost:3000/perfil" className="nav__link">
                                     <i className="bx bx-user nav__icon"></i>
-                                    <span className="nav__name">User</span>
+                                    <span className="nav__name">Perfil</span>
                                 </a>
-                                <a href="#" className="nav__link">
-                                    <i className="bx bx-message-square-detail nav__icon"></i>
-                                    <span className="nav__name">Mensajes</span>
-                                </a>
-                                <a href="#" className="nav__link">
-                                    <i className="bx bx-bookmark nav__icon"></i>
-                                    <span className="nav__name">Favoritos</span>
-                                </a>
-                                <a href="#" className="nav__link">
+                                
+                                <a href="http://localhost:3000/listarProyectos" className="nav__link">
                                     <i className="bx bx-folder nav__icon"></i>
-                                    <span className="nav__name">Data</span>
+                                    <span className="nav__name">Proyectos</span>
                                 </a>
-                                <a href="#" className="nav__link">
-                                    <i className="bx bx-bar-chart-alt-2 nav__icon"></i>
-                                    <span className="nav__name">analytics</span>
-                                </a>
+                                
                                 <a href="http://localhost:3000/carrito" className="nav__link">
                                     <i className="bx bx-cart nav__icon"></i>
                                     <span className="nav__name">Carrito</span>
                                 </a>
                             </div>
                         </div>
-                        <a href="#" className="nav__link">
+                        <a className="nav__link" onClick={this.close}>
                             <i className="bx bx-log-out nav__icon"></i>
                             <span className="nav__name">Logout</span>
                         </a>

@@ -23,6 +23,7 @@ img {
     -ms-flex-align: center;
     align-items: center;
     margin-left: 75px;
+    font-family: 'Nunito', sans-serif;
 }
 
 .row {
